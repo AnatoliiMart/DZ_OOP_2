@@ -4,7 +4,7 @@
 class PhoneBook
 {
 public:
-	Phonebook()
+	PhoneBook()
 	{
 		_initials			  = nullptr;
 		_homePhone		  = nullptr;
@@ -79,13 +79,5 @@ private:
 
 int main()
 {
-	//std::cout << sizeof(PhoneBook);
-	PhoneBook* Contact = new PhoneBook[BUFSIZ*2];
-	int choise = 0;
-	switch (choise)
-	{
-	default:
-		break;
-	}
-	Contact[0];
+
 }
