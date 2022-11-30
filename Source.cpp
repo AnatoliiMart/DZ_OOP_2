@@ -4,11 +4,11 @@
 class PhoneBook
 {
 public:
-	PhoneBook()
+	Phonebook()
 	{
-		_initials			 = nullptr;
-		_homePhone			 = nullptr;
-		_mobilePhone	   = nullptr;
+		_initials			  = nullptr;
+		_homePhone		  = nullptr;
+		_mobilePhone	  = nullptr;
 		_additionalInfo = nullptr;
 	}
 	PhoneBook(const char* Initials, const char* HomePhone, const char* MobilePhone, const char* AdditionalInfo)
@@ -25,13 +25,7 @@ public:
 		_additionalInfo = new char[strlen(AdditionalInfo + 1)];
 		strcpy_s(_additionalInfo,  strlen(AdditionalInfo + 1), AdditionalInfo);
 	}
-	~PhoneBook()
-	{
-		delete[] _initials;
-		delete[] _homePhone;
-		delete[] _mobilePhone;
-		delete[] _additionalInfo;
-	}
+	
 	void InputData()
 	{
 		std::cout << "Enter the new contact: " << std::endl;
@@ -52,14 +46,30 @@ public:
 		std::cin  >> _additionalInfo;
 		std::cout << std::endl;
 	}
-	void Output()
+	void OutputData()
 	{
-		if (true)
+		if (_initials       == nullptr &&
+			  _homePhone      == nullptr &&
+			  _mobilePhone    == nullptr &&
+			  _additionalInfo == nullptr)
 		{
-
+			std::cout << "Empty cell!" << std::endl;
+		}
+		else
+		{
+			std::cout << "Initials: "        << _initials;
+			std::cout << "Home phone: "      << _homePhone;
+			std::cout << "Mobile phone: "    << _mobilePhone;
+			std::cout << "Additional info: " << _additionalInfo;
 		}
 	}
-
+	~PhoneBook()
+	{
+		delete[] _initials;
+		delete[] _homePhone;
+		delete[] _mobilePhone;
+		delete[] _additionalInfo;
+	}
 private:
 	char* _initials;
 	char* _homePhone;
@@ -69,5 +79,13 @@ private:
 
 int main()
 {
-
+	//std::cout << sizeof(PhoneBook);
+	PhoneBook* Contact = new PhoneBook[BUFSIZ*2];
+	int choise = 0;
+	switch (choise)
+	{
+	default:
+		break;
+	}
+	Contact[0];
 }
