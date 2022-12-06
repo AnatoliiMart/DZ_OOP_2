@@ -136,47 +136,46 @@ private:
 
 int main()
 {
-	PhoneBook* obj = new PhoneBook[10];
+	PhoneBook* obj = new PhoneBook[BUFSIZ];
 	int SIZE = 0;
-	//obj->CreatePhoneBook(obj,SIZE);
-	//obj->ShowPhoneBook(obj,SIZE);
-	//obj->AddContact(obj, SIZE);
-	//obj->ShowPhoneBook(obj, SIZE);
-	//
-	//obj->ShowPhoneBook(obj, SIZE);
 
 	int chooseVar;
 	bool correct = true;
+
 	do
 	{
 		std::cout << "MENU:\n"
-			<< "1. Fill the phone book\n"
-			<< "2. Show the phone book\n"
-			<< "3. Add contact to the phone book\n"
-			<< "4. Delete contact from the phone book\n"
-			<< "5. Exit\n";
+			        << "1. Fill the phone book\n"
+			        << "2. Show the phone book\n"
+			        << "3. Add contact to the phone book\n"
+			        << "4. Delete contact from the phone book\n"
+			        << "5. Exit\n";
+
 		std::cout << "Choose operation: ";
-		std::cin >> chooseVar;
+		std::cin  >> chooseVar;
+
 		system("cls");
+
 		if (std::cin.fail() || chooseVar < 1 || chooseVar > 5)
 		{
 			std::cout << "Wrong input!!! Enter the right variant" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+
 		switch (chooseVar)
 		{
 		case 1:
 			obj->CreatePhoneBook(obj, SIZE);
 			break;
 		case 2:
-			obj->ShowPhoneBook(obj, SIZE);
+			obj->ShowPhoneBook  (obj, SIZE);
 			break;
 		case 3:
-			obj->AddContact(obj, SIZE);
+			obj->AddContact     (obj, SIZE);
 			break;
 		case 4:
-			obj->DeleteContact(obj, SIZE);
+			obj->DeleteContact  (obj, SIZE);
 			break;
 		case 5:
 			correct = false;
