@@ -88,7 +88,7 @@ private:
 
 void ShowPhoneBook  (Contact*, int);
 
-void CreatePhoneBook(Contact*, int);
+void CreatePhoneBook(Contact*, int&);
 
 void AddContact     (Contact*, int&);
 
@@ -160,7 +160,7 @@ void ShowPhoneBook(Contact* obj, int size)
 	}
 }
 
-void CreatePhoneBook(Contact* obj, int size)
+void CreatePhoneBook(Contact* obj, int& size)
 
 {
 	std::cout << "Enter phonebook size: ";
