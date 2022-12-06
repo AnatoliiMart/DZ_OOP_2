@@ -1,18 +1,19 @@
 #include <iostream>
 
 
-class PhoneBook
+class Contact
 {
 public:
 
-	PhoneBook()
+	Contact()
 	{
 		_initials			  = new char[100] {"Empty!"};
 		_homePhone		  = new char[100] {"Empty!"};
 		_mobilePhone	  = new char[100] {"Empty!"};
 		_additionalInfo = new char[100] {"Empty!"};
 	}
-	PhoneBook(const char* Initials, const char* HomePhone, const char* MobilePhone, const char* AdditionalInfo)
+
+	Contact(const char* Initials, const char* HomePhone, const char* MobilePhone, const char* AdditionalInfo)
 	{
 		_initials = new char [strlen(Initials + 1)];
 		strcpy_s(_initials,  strlen(Initials + 1), Initials);
@@ -50,6 +51,7 @@ public:
 		std::cin  >> _additionalInfo;
 		std::cout << std::endl;
 	}
+
 	void OutputData()
 	{
 		if (_initials       == nullptr &&
@@ -68,59 +70,8 @@ public:
 			std::cout << std::endl;
 		}
 	}
-	void ShowPhoneBook(PhoneBook* obj, int& size)
-	{
-		std::cout << "CONTACT LIST!" << std::endl;
-
-		for (size_t i = 0; i < size; i++)
-		{ 
-			std::cout << "Contact: " << i + 1 << std::endl;
-			obj[i].OutputData();
-		}
-	}
-	void CreatePhoneBook(PhoneBook* obj, int& size)
-		
-	{
-		std::cout << "Enter phonebook size: ";
-		std::cin  >> size;
-
-			for (size_t i = 0; i < size; i++)
-			{
-				obj[i].InputData();
-			}
-	}
-	void AddContact(PhoneBook* obj, int& size)
-	{
-		std::cout << "Adding the new contact:" << std::endl;
-		for (size_t i = size; i < size+1; i++)
-		{
-			obj[i].InputData();
-		}
-		size += 1;
-
-	}
-	void DeleteContact(PhoneBook* obj, int& size)
-	{
-		int numObjToDel = 0;
-
-		std::cout << "The contact under which number you want to delete: ";
-		std::cin >> numObjToDel;
-		numObjToDel -= 1;
-
-		std::cout << std::endl;
-
-		for (size_t i = 0; i < size; i++)
-		{
-			if (i >= numObjToDel)
-			{
-				obj[i] = obj[i + 1];
-			}
-		}
-		size -= 1;
-
-	}
-
-	~PhoneBook()
+	
+	~Contact()
 	{
 		delete[] _initials;
 		delete[] _homePhone;
@@ -134,11 +85,22 @@ private:
 	char* _additionalInfo;
 };
 
+
+void ShowPhoneBook  (Contact*, int&);
+
+void CreatePhoneBook(Contact*, int&);
+
+void AddContact     (Contact*, int&);
+
+void DeleteContact  (Contact*, int&);
+
+
+
 int main()
 {
-	PhoneBook* obj = new PhoneBook[BUFSIZ];
 	int SIZE = 0;
-
+	Contact* obj = new Contact[SIZE];
+	
 	int chooseVar;
 	bool correct = true;
 
@@ -166,16 +128,16 @@ int main()
 		switch (chooseVar)
 		{
 		case 1:
-			obj->CreatePhoneBook(obj, SIZE);
+			CreatePhoneBook(obj, SIZE);
 			break;
 		case 2:
-			obj->ShowPhoneBook  (obj, SIZE);
+			ShowPhoneBook  (obj, SIZE);
 			break;
 		case 3:
-			obj->AddContact     (obj, SIZE);
+			AddContact     (obj, SIZE);
 			break;
 		case 4:
-			obj->DeleteContact  (obj, SIZE);
+			DeleteContact  (obj, SIZE);
 			break;
 		case 5:
 			correct = false;
@@ -185,6 +147,59 @@ int main()
 	} while (correct);
 	
 	delete[] obj;
+}
 
-	
+void ShowPhoneBook(Contact* obj, int size)
+{
+	std::cout << "CONTACT LIST!" << std::endl;
+
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cout << "Contact: " << i + 1 << std::endl;
+		obj[i].OutputData();
+	}
+}
+
+void CreatePhoneBook(Contact* obj, int& size)
+
+{
+	std::cout << "Enter phonebook size: ";
+	std::cin >> size;
+
+	for (size_t i = 0; i < size; i++)
+	{
+		obj[i].InputData();
+	}
+}
+
+void AddContact(Contact* obj, int& size)
+{
+	std::cout << "Adding the new contact:" << std::endl;
+	for (size_t i = size; i < size + 1; i++)
+	{
+		obj[i].InputData();
+	}
+	size += 1;
+
+}
+
+void DeleteContact(Contact* obj, int& size)
+{
+	int numObjToDel = 0;
+
+	std::cout << "The contact under which number you want to delete: ";
+	std::cin >> numObjToDel;
+	numObjToDel -= 1;
+
+	std::cout << std::endl;
+
+	for (size_t i = 0; i < size; i++)
+	{
+		if (i >= numObjToDel)
+		{
+			obj[i] = obj[i + 1];
+		}
+	}
+	size -= 1;
+
 }
